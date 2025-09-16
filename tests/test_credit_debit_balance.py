@@ -8,7 +8,7 @@ def test_customer_login_select_account(page):
     """
     page.goto("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login")
 
-    # Customer login
+    # Customer login as Hermoine Granger
     page.click("button[ng-click='customer()']")
     page.select_option("select#userSelect", label="Hermoine Granger")
     page.click("button[type='submit']")

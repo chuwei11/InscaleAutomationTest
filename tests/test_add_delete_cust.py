@@ -1,4 +1,6 @@
 def test_add_customers(page):
+    
+    # Customers to add
     customers = [
         {"first": "Christopher", "last": "Connely", "postcode": "L789C349"},
         {"first": "Frank", "last": "Christopher", "postcode": "A897N450"},
@@ -17,25 +19,22 @@ def test_add_customers(page):
 
     page.goto("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login")
 
-    # Login as Bank Manager
+    # Bank Manager Login
     page.click("button[ng-click='manager()']")
-
-    # Navigate to Add Customer tab
     page.click("button[ng-click='addCust()']")
 
-    # Always auto-accept dialogs
+    # Always autoaccept dialogs
     page.on("dialog", lambda dialog: dialog.accept())
 
+    # Looping customers to add
     for cust in customers:
         page.fill("input[ng-model='fName']", cust["first"])
         page.fill("input[ng-model='lName']", cust["last"])
         page.fill("input[ng-model='postCd']", cust["postcode"])
         page.click("button[type='submit']")
 
-    # Navigate to Customers tab
+    # Navigate to Customers tab and verify if customer table appear
     page.click("button[ng-click='showCust()']")
-
-    # Wait for customer table to appear
     page.wait_for_selector("table tbody tr")
 
     # Verify all customers exist in the table
@@ -45,6 +44,7 @@ def test_add_customers(page):
         ).filter(has_text=cust["postcode"])
         assert row_locator.count() > 0, f"Customer not found: {cust}"
         
+    # Delete customers
     for cust in customers_to_delete:
         # Locate the row containing this customer's data
         row = (
@@ -53,13 +53,9 @@ def test_add_customers(page):
             .filter(has_text=cust["postcode"])
         )
 
-        # Assert row exists before attempting delete
+        # Verify if row exist, click on delete button and check if the row is still there
         assert row.count() > 0, f"Customer not found before delete: {cust}"
-
-        # Click the Delete button inside this row
         row.locator("button", has_text="Delete").click()
-
-        # Verify row is removed from the table
         assert (
             row.count() == 0
         ), f"Customer still present after delete: {cust}"
