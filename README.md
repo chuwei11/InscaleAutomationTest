@@ -29,6 +29,6 @@ Supports running in headless or headed mode
 - playwright install
 
 
-Run tests
+4. Run tests
 - pytest tests/test_add_delete_cust.py
 - pytest tests/test_credit_debit_baance.py
