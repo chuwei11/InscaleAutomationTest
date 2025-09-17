@@ -8,6 +8,11 @@ Easy setup with virtual environment
 
 Supports running in headless or headed mode
 
+## Clone the repository
+
+- git clone https://github.com/chuwei11/InscaleAutomationTest.git
+- cd InscaleAutomationTest
+
 ## Setup VSCode
 
 - Add autocomplete.
@@ -21,25 +26,20 @@ Supports running in headless or headed mode
 
 # Install test dependencies
 
-1. Clone the repository
-
-- git clone https://github.com/chuwei11/InscaleAutomationTest.git
-- cd InscaleAutomationTest
-
-
-2. Create and activate a virtual environment
+1. Create and activate a virtual environment
 
 - python -m venv venv
+- python3 -m venv .venv # if the first one doesnt work
 - source venv/bin/activate   # macOS/Linux
 - venv\Scripts\activate      # Windows
 
 
-3. Install dependencies
-
+2. Install dependencies
+- source .venv/bin/activate
 - pip install -r requirements.txt
 - playwright install
 
 
-4. Run tests
+3. Run tests
 - pytest tests/test_add_delete_cust.py
 - pytest tests/test_credit_debit_baance.py
