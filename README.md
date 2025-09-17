@@ -42,4 +42,4 @@ Supports running in headless or headed mode
 
 3. Run tests
 - pytest tests/test_add_delete_cust.py
-- pytest tests/test_credit_debit_baance.py
+- pytest tests/test_credit_debit_balance.py
